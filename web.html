@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC P2P通信</title>
+</head>
+<body>
+    <h1>请输入提取码</h1>
+    <input type="text" id="password" maxlength="6" placeholder="提取码（仅限数字）">
+    <button onclick="checkPassword()">提交</button>
+    <p id="message"></p>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var pattern = /^\d{6}$/;
+            if (!pattern.test(password)) {
+                document.getElementById("message").innerText = "请输入6位数字提取码";
+                return;
+            }
+
+            // 校验密码
+            if (password === "YOUR_PASSWORD") {
+                document.getElementById("message").innerText = "正在施展魔法...";
+                document.getElementById("password").disabled = true;
+                document.querySelector("button").disabled = true;
+                setTimeout(() => {
+                    document.getElementById("message").innerText = "果然！在这茫茫人海之中，你我的相遇终究是命中注定。等我10秒钟，我将为你量身定制最适合你的礼物。";
+                    document.getElementById("password").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("password").value = "";
+                    // 在此添加逻辑以生成和发送conf文件
+                }, 10000);
+            } else {
+                document.getElementById("message").innerText = "密码错误，请重新输入";
+                document.getElementById("password").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
